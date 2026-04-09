@@ -1,9 +1,12 @@
+Конечно, вот готовый код веб-страницы, который визуально и структурно воспроизводит содержание документа по вашему URL. Я сохранил всю информацию, разделив её на цветные вкладки для удобства чтения.
+
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Регламент лорников | Клинок, рассекающий демонов</title>
+    <title>Регламент лорников | Кодекс лорных персонажей</title>
     <style>
         * {
             margin: 0;
@@ -12,447 +15,419 @@
         }
 
         body {
-            background: #0a0c10;
+            background: linear-gradient(145deg, #0a0f1a 0%, #0c111e 100%);
             font-family: 'Segoe UI', 'Roboto', 'Noto Sans', system-ui, -apple-system, sans-serif;
-            color: #e6e9f0;
-            line-height: 1.5;
-            padding: 1.5rem 1rem;
+            padding: 2rem 1.5rem;
+            color: #eef2ff;
         }
 
-        /* основной контейнер */
+        /* главный контейнер */
         .container {
-            max-width: 1280px;
+            max-width: 1400px;
             margin: 0 auto;
-            background: #11151c;
-            border-radius: 2rem;
-            overflow: hidden;
-            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.6);
-            border: 1px solid #2a2f3a;
+            background: rgba(18, 24, 36, 0.65);
+            backdrop-filter: blur(2px);
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            padding: 2rem 2rem 2.5rem 2rem;
+            border: 1px solid rgba(255, 215, 120, 0.2);
         }
 
-        /* шапка */
-        .hero {
-            background: linear-gradient(135deg, #0f1219 0%, #1a1f2a 100%);
-            padding: 2rem 2rem 1.5rem 2rem;
-            border-bottom: 1px solid #2c3240;
+        /* заголовок и шапка */
+        .site-header {
             text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #ffd966;
+            padding-bottom: 1.2rem;
         }
 
-        .badge {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: #1e2a3a;
-            display: inline-block;
-            padding: 0.3rem 0.9rem;
-            border-radius: 30px;
-            color: #8da3c0;
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #f5f9ff, #b9c8ff);
-            background-clip: text;
+        .site-header h1 {
+            font-size: 2.6rem;
+            background: linear-gradient(135deg, #FFE6B0, #FFB347);
             -webkit-background-clip: text;
+            background-clip: text;
             color: transparent;
-            margin-bottom: 0.5rem;
             letter-spacing: -0.5px;
+            text-shadow: 0 2px 3px rgba(0,0,0,0.2);
         }
 
         .sub {
-            color: #8b9bb0;
-            font-size: 1rem;
-            border-top: 1px solid #2a2f3a;
-            display: inline-block;
-            padding-top: 0.75rem;
+            color: #9aaec0;
             margin-top: 0.5rem;
+            font-style: italic;
         }
 
-        /* панель цветных вкладок (индикаторы) */
-        .color-tabs {
+        /* панель вкладок */
+        .tabs {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 1rem;
-            background: #0c0f15;
-            padding: 1rem 1rem;
-            border-bottom: 1px solid #252b34;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,215,120,0.3);
+            padding-bottom: 0.75rem;
         }
 
-        .tab-marker {
+        .tab-btn {
+            background: rgba(20, 28, 40, 0.8);
+            border: none;
+            padding: 0.7rem 1.8rem;
+            font-size: 1rem;
             font-weight: 600;
-            padding: 0.4rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            background: #191e26;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #ccddee;
+            backdrop-filter: blur(4px);
             box-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
 
-        .yellow { background: #e6b42220; color: #ffd966; border-left: 3px solid #e6b422; }
-        .green { background: #2b6e3c20; color: #9bdc9b; border-left: 3px solid #3ba55d; }
-        .red { background: #c73f2c20; color: #ff8a7a; border-left: 3px solid #e06c5e; }
-        .blue { background: #2c6e9e20; color: #7fc9ff; border-left: 3px solid #3b82f6; }
-        .cyan { background: #1f7a7a20; color: #7fe0e0; border-left: 3px solid #14b8b6; }
-
-        /* основной контент */
-        .content {
-            padding: 2rem 2rem 2.5rem 2rem;
+        .tab-btn:hover {
+            background: #2a374b;
+            transform: translateY(-2px);
         }
 
-        section {
-            margin-bottom: 2.5rem;
-            scroll-margin-top: 1rem;
+        /* цвета вкладок (как на оригинале) */
+        .tab-btn[data-tab="tab1"] { border-left: 5px solid #FFD966; }   /* жёлтый */
+        .tab-btn[data-tab="tab2"] { border-left: 5px solid #6fcf97; }   /* зелёный */
+        .tab-btn[data-tab="tab3"] { border-left: 5px solid #e74c3c; }   /* красный */
+        .tab-btn[data-tab="tab4"] { border-left: 5px solid #5dade2; }   /* синий */
+        .tab-btn[data-tab="tab5"] { border-left: 5px solid #48c9b0; }   /* бирюзовый */
+
+        .tab-btn.active {
+            background: #2c3e4e;
+            color: white;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+            border-bottom: 2px solid #ffd966;
         }
 
-        h2 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.4rem;
-            border-bottom: 3px solid #2c3a4a;
-            display: inline-block;
-            letter-spacing: -0.3px;
+        /* контент вкладок */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.25s ease;
         }
 
-        h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin: 1.2rem 0 0.7rem 0;
-            color: #cdd9ff;
+        .tab-content.active {
+            display: block;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* карточки и стили текста */
         .rule-card {
-            background: #0f131b;
-            border-left: 4px solid #3b6e9e;
-            padding: 1rem 1.3rem;
-            margin: 1rem 0;
-            border-radius: 1rem;
+            background: rgba(10, 15, 25, 0.7);
+            border-radius: 1.5rem;
+            padding: 1.4rem 1.8rem;
+            margin-bottom: 1.5rem;
+            border-left: 6px solid;
+            backdrop-filter: blur(4px);
             transition: 0.1s linear;
         }
 
+        .rule-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            background: linear-gradient(120deg, #fff2cf, #ffe0a3);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .rule-card p, .rule-card li {
+            color: #e0e7f5;
+            line-height: 1.5;
+        }
+
         .rule-list {
-            list-style: none;
-            padding-left: 0;
+            padding-left: 1.4rem;
+            margin: 0.7rem 0;
         }
 
         .rule-list li {
-            margin-bottom: 0.7rem;
-            padding-left: 1.2rem;
-            position: relative;
+            margin: 0.5rem 0;
         }
 
-        .rule-list li::before {
-            content: "▹";
-            position: absolute;
-            left: 0;
-            color: #6c8fc7;
-        }
-
-        .info-note {
-            background: #0f1822;
-            border-radius: 1rem;
-            padding: 1rem 1.5rem;
-            margin: 1rem 0;
-            font-style: italic;
-            border: 1px solid #2a3548;
-        }
-
-        .link-external {
-            background: #1f2a36;
-            border-radius: 1rem;
-            padding: 1rem 1.5rem;
-            margin: 1.2rem 0;
-            border-left: 5px solid #ffbc6e;
-        }
-
-        .link-external a {
-            color: #ffbc6e;
-            text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px dotted #ffbc6e;
-        }
-
-        .link-external a:hover {
+        .badge {
+            background: #1e2a3a;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: bold;
             color: #ffd966;
+            display: inline-block;
+            margin-right: 0.5rem;
         }
 
         hr {
-            border: none;
-            height: 1px;
-            background: #262e3a;
-            margin: 1.2rem 0;
+            border-color: #2a374b;
+            margin: 1rem 0;
         }
 
-        .badge-sm {
-            background: #202632;
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            display: inline-block;
-            margin-right: 0.6rem;
+        .info-note {
+            background: #0f172ad9;
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
+            border: 1px solid #ffd96655;
         }
 
-        footer {
-            background: #090c10;
-            padding: 1.5rem 2rem;
+        .footer-ref {
+            margin-top: 2rem;
             text-align: center;
-            font-size: 0.8rem;
-            color: #6c7a8e;
-            border-top: 1px solid #1f2530;
+            font-size: 0.85rem;
+            color: #8aa0b5;
+            border-top: 1px solid #2a3a44;
+            padding-top: 1.2rem;
         }
 
-        @media (max-width: 720px) {
-            body {
-                padding: 0.8rem;
-            }
-            .content {
-                padding: 1.2rem;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            h2 {
-                font-size: 1.4rem;
-            }
-            .color-tabs {
-                gap: 0.6rem;
-            }
-            .tab-marker {
-                padding: 0.2rem 0.9rem;
-                font-size: 0.7rem;
-            }
+        a {
+            color: #ffcd7e;
+            text-decoration: none;
+            border-bottom: 1px dotted;
+        }
+
+        a:hover {
+            color: #ffb347;
+        }
+
+        @media (max-width: 700px) {
+            body { padding: 1rem; }
+            .container { padding: 1.2rem; }
+            .tab-btn { padding: 0.5rem 1rem; font-size: 0.85rem; }
+            .rule-card h3 { font-size: 1.3rem; }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="hero">
-        <div class="badge">lorecharacter / Yufu.Su</div>
-        <h1>Регламент лорников</h1>
-        <div class="sub">Свод правил и регламентов для лорных персонажей. Выберите вкладку.</div>
-        <div class="color-tabs">
-            <span class="tab-marker yellow">Жёлтый — регламент</span>
-            <span class="tab-marker green">Зелёный — обязанности</span>
-            <span class="tab-marker red">Красный — санкции</span>
-            <span class="tab-marker blue">Синий — информация</span>
-            <span class="tab-marker cyan">Бирюзовый — сроки и периоды</span>
+    <div class="site-header">
+        <h1>⚔️ Регламент лорников ⚔️</h1>
+        <div class="sub">Свод правил и регламентов для лорных персонажей • Yufu.Su / lorecharacter</div>
+        <div style="margin-top: 12px; font-size:0.9rem;">
+            <span style="background:#FFD96622; padding:4px 10px; border-radius:30px;">🟡 Жёлтый — регламент</span>
+            <span style="background:#6fcf9722; padding:4px 10px; border-radius:30px;">🟢 Зелёный — обязанности</span>
+            <span style="background:#e74c3c22; padding:4px 10px; border-radius:30px;">🔴 Красный — санкции</span>
+            <span style="background:#5dade222; padding:4px 10px; border-radius:30px;">🔵 Синий — информация</span>
+            <span style="background:#48c9b022; padding:4px 10px; border-radius:30px;">🩵 Бирюзовый — сроки и периоды</span>
         </div>
     </div>
 
-    <div class="content">
-        <!-- ЖЁЛТЫЙ РАЗДЕЛ: РЕГЛАМЕНТ -->
-        <section id="reglament">
-            <h2>📜 1. Регламент лорных персонажей</h2>
-            
-            <div class="rule-card">
-                <h3>🔹 Испытательный срок</h3>
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="tab1">📜 Регламент</button>
+        <button class="tab-btn" data-tab="tab2">🌿 Обязанности</button>
+        <button class="tab-btn" data-tab="tab3">⚠️ Санкции</button>
+        <button class="tab-btn" data-tab="tab4">ℹ️ Информация</button>
+        <button class="tab-btn" data-tab="tab5">⏳ Сроки / Отпуска</button>
+    </div>
+
+    <!-- Вкладка 1: Регламент (жёлтый) -->
+    <div id="tab1" class="tab-content active">
+        <div class="rule-card" style="border-left-color: #FFD966;">
+            <h3>📌 Испытательный срок</h3>
+            <ul class="rule-list">
+                <li>🔹 Испытательный срок длится <strong>две недели</strong> с момента прохождения на лорного персонажа.</li>
+                <li>🔹 При получении выговора на испытательном сроке → снятие и <strong>перманентный ЧС</strong> лорных персонажей.</li>
+                <li>🔹 Отпуск продлевает испытательный срок: 1 день отпуска = +1 день к испытательному сроку.</li>
+            </ul>
+        </div>
+        <div class="rule-card" style="border-left-color: #FFD966;">
+            <h3>🎲 Команда /roll и статус no-roll</h3>
+            <p>Полный регламент бросков для Хашир, Лун, лидеров и ГГ — на отдельной странице:<br>
+            📎 <a href="https://whiteprinc3.github.io/rollsystem/" target="_blank">Система /roll — Клинок, рассекающий демонов</a><br>
+            Диапазон 0–100, бонусы за ранг, no-roll для Столпов и Лун. <strong>Две неудачи подряд</strong> → обязательная пауза 3 минуты перед новым /roll.</p>
+        </div>
+        <div class="rule-card" style="border-left-color: #FFD966;">
+            <h3>⚖️ Правила статуса и ERP логика</h3>
+            <ul class="rule-list">
+                <li>Статус ≠ вседозволенность. Действия должны быть логичны и каноничны.</li>
+                <li><strong>ERP логика:</strong> соблюдаем канон пар (Обанай–Мицури, Танджиро–Канао и т.д.)<br>
+                ➖ Персонажам младше 14 лет запрещено ERP.<br>
+                ➖ Только с противоположным полом, логичное развитие отношений, без заведения детей.</li>
+                <li>Запрещено злоупотреблять /roll; не использовать как способ избежать отыгровки.</li>
+            </ul>
+        </div>
+        <div class="rule-card" style="border-left-color: #FFD966;">
+            <h3>📖 Общие положения (1.1 – 1.27)</h3>
+            <div style="max-height: 400px; overflow-y: auto; padding-right: 8px;">
                 <ul class="rule-list">
-                    <li>Испытательный срок длится две недели и начинается с момента вашего прохождения на лорного персонажа.</li>
-                    <li>В случае получения выговора на испытательном сроке вы получаете снятие и перм ЧС лорных персонажей.</li>
-                    <li>Взятие отпуска на испытательном сроке продлевает время его действия. Соотношение 1 к 1 <span class="badge-sm">Пояснение: 1 день отпуска = +1 день к испытательному сроку.</span></li>
+                    <li><span class="badge">1.1</span> Нельзя одновременно стоять на двух серверах на наборном лорном персонаже.</li>
+                    <li><span class="badge">1.4–1.5</span> Чёткое выполнение указаний РП состава и лидера фракции.</li>
+                    <li><span class="badge">1.6</span> Квота онлайна без AFK / бесполезной деятельности.</li>
+                    <li><span class="badge">1.8</span> Квота учитывается с <strong>16:00 до 00:00 МСК</strong>.</li>
+                    <li><span class="badge">1.10</span> Столпы/Луны обязаны контролировать состав и предотвращать массовые нарушения.</li>
+                    <li><span class="badge">1.12</span> Запрещено перемещение между фракциями, если есть лорный персонаж (кроме второстепенных).</li>
+                    <li><span class="badge">1.13–1.17</span> РП состав вправе выносить наказания, обнулять итоги ивентов, аннулировать отчётность.</li>
+                    <li><span class="badge">1.27</span> Восстановление персонажа в противоположной фракции невозможно, если использовался второй слот.</li>
                 </ul>
+                <p>🔹 <strong>Приоритет регламента</strong> над внутренними уставами фракций. Все решения РП состава обязательны.</p>
             </div>
+        </div>
+    </div>
 
-            <div class="link-external">
-                <strong>🎲 Команда /roll и статус no-roll</strong><br>
-                Полный регламент по команде /roll, статусу no-roll для Хашир, Лун и лидеров, правилам для главных героев, примерам и таблице рангов с бонусами — на отдельном сайте системы бросков.<br>
-                📍 <a href="https://whiteprinc3.github.io/rollsystem/" target="_blank" rel="noopener noreferrer">Система /roll — Клинок, рассекающий демонов →</a><br>
-                Там же: диапазон 0–100, бонусы за ранг, no roll для Столпов и Лун, интерактивные панели и таблица «Кто кидает /roll».
-            </div>
-
-            <div class="rule-card">
-                <h3>⚖️ Правила статуса</h3>
-                <ul class="rule-list">
-                    <li>Статус не означает вседозволенности.</li>
-                    <li>Любые действия должны быть логичными, соответствовать канону и правилам RP.</li>
-                    <li>За использование статуса для нелогичных, нереалистичных или нарушающих баланс действий может последовать наказание.</li>
-                    <li>Запрещено злоупотреблять командой /roll: в случае двух неудач подряд Вы обязаны ждать 3 минуты, прежде чем вновь использовать команду.</li>
-                </ul>
-                <div class="info-note">Напоминание: /roll — это инструмент для честного и справедливого определения исхода, а не способ избежать логики и отыгровки. Всегда сохраняйте роль, уважение к логике мира и последовательность действий.</div>
-            </div>
-
-            <div class="rule-card">
-                <h3>💞 Регламент соблюдения ERP логики</h3>
-                <ul class="rule-list">
-                    <li>Соблюдаем канон пары (Обанай - Мицури, Танджиро - Канао, Аой - Иноске, Зеницу - Незуко, Тенген - его жены и тд; Исключение: Вы не обладаете канон парой, вы имеете право развивать отношения с обычным игроком.)</li>
-                    <li>Всем лорникам, которым по РП меньше 14 лет запрет на ERP.</li>
-                    <li>ЕРП только с противоположным полом.</li>
-                    <li>Соблюдать логику развития ваших отношений.</li>
-                    <li>Запрещено доводить ERP до стадии заведения детей и их рождения (секс и ничего больше, без роста населения на юфусе).</li>
-                </ul>
-            </div>
-
-            <h3>📌 Общие положения (1.1 – 1.27)</h3>
-            <div class="rule-card">
-                <ul class="rule-list">
-                    <li><strong>1.1.</strong> Наборные лорные персонажи второго сервера не могут стоять одновременно на первом сервере на наборном лорном персонаже, а также это работает наоборот.</li>
-                    <li><strong>1.2.</strong> В случае рецидива нарушений мера наказаний увеличивается.</li>
-                    <li><strong>1.3.</strong> Каждый лорный персонаж обязан строго и чётко выполнять поставленные РП составом указания, связанные с проектом.</li>
-                    <li><strong>1.4.</strong> Каждый лорный персонаж обязан строго и чётко выполнять поставленные лидером фракции обязанности и указания по ней.</li>
-                    <li><strong>1.5.</strong> Каждый наборный лорный персонаж обязан строго и чётко выполнять расписанные обязанности.</li>
-                    <li><strong>1.6.</strong> Каждый лорный персонаж обязан в полной мере отыгрывать свою квоту по онлайну. Категорически запрещено отыгрывать квоту в AFK или выполнением какой-либо бесполезной деятельностью.</li>
-                    <li><strong>1.7.</strong> Каждый лорный персонаж обязан соблюдать действующие правила дискорд-сервера, а также проекта; независимо, где будет выдано наказание — лорник сможет получить предупреждение или выговор.</li>
-                    <li><strong>1.8.</strong> Квота лорных персонажей учитывается с 16:00 до 00:00 по МСК.</li>
-                    <li><strong>1.9.</strong> Запрещена махинация с правилами внутреннего регламента лорников, так и активный поиск дыр в нём.</li>
-                    <li><strong>1.10.</strong> Столпы/Луны обязуются контролировать собственный состав; в это входит: если вы замечаете массовые нарушения правил — вы должны предотвратить их беседой/пресечением.</li>
-                    <li><strong>1.11.</strong> Запрещено видоизменять дискорд-сервер без оповещения РП-персонала и высшей администрации сервера.</li>
-                    <li><strong>1.12.</strong> Запрещено перемещаться между двумя фракциями, если у Вас есть лорный персонаж. Исключение: второстепенные персонажи.</li>
-                    <li><strong>1.13.</strong> Право на наказание. РП состав обладает правом выносить наказания лорным персонажам, опираясь на логику лора Клинка, правил сервера и положения регламента.</li>
-                    <li><strong>1.14.</strong> Условное применение наказаний. Наказания применяются по усмотрению РП состава с учётом тяжести нарушения.</li>
-                    <li><strong>1.15–1.27:</strong> Мониторинг ситуации, вмешательство в дела фракций, обнуление итогов события, аннулирование отчётности, приоритет регламента, восстановление персонажа и прочее.</li>
-                </ul>
-                <div class="info-note">Полный текст пп. 1.15–1.27 доступен в оригинале; все они действуют в полной мере: право запроса информации, проверка отчётности, временные ограничения, приоритет регламента, предотвращение конфликтов интересов и восстановление персонажа в противоположной фракции.</div>
-            </div>
-        </section>
-
-        <!-- ЗЕЛЁНЫЙ РАЗДЕЛ: ОБЯЗАННОСТИ -->
-        <section id="duties">
-            <h2>🟢 2. Обязанности лорных персонажей</h2>
-            
+    <!-- Вкладка 2: Обязанности (зелёный) -->
+    <div id="tab2" class="tab-content">
+        <div class="rule-card" style="border-left-color: #6fcf97;">
             <h3>🌟 Prime-Time для Столпов, Лун и Главных героев</h3>
             <ul class="rule-list">
-                <li>Ежедневно 16:00–00:00 — присутствие на сервере 90 минут активного времени.</li>
-                <li>Столпы и Луны: активность на максимуме, AFK с оповещением в OOC/Asay — макс. 30 минут.</li>
-                <li>Главные герои — активность в полном масштабе для игроков.</li>
-                <li>Ежедневно: скриншот в ветку онлайна, отчётность по критериям информации лун/столпов/ГГ.</li>
+                <li><strong>Ежедневно 16:00 – 00:00</strong> — 90 минут активного времени.</li>
+                <li>Столпы и Луны: активность на максимуме, AFK с оповещением не более 30 минут.</li>
+                <li>Ежедневный скриншот в ветку онлайна + отчётность по критериям.</li>
             </ul>
-
+        </div>
+        <div class="rule-card" style="border-left-color: #6fcf97;">
             <h3>👑 Лидеры фракций</h3>
+            <p>Контроль порядка, активности, помощь игрокам, отчёт куратору в конце месяца. Квота — допустимая деятельность (ивенты, тренировки). Участие в чужих мероприятиях — не более 50%.</p>
+        </div>
+        <div class="rule-card" style="border-left-color: #6fcf97;">
+            <h3>🌙 Столпы / Демоны 12 лун</h3>
             <ul class="rule-list">
-                <li>Основные задачи: порядок в фракции, активности, устав и его модернизация, помощь игрокам, решение споров, задачи от РП состава.</li>
-                <li>Ежемесячно: помощь в межфракционных событиях, контроль фракционных событий, отчёт по обязанностям в конце месяца лично РП куратору.</li>
-                <li>Квота — допустимая деятельность (ивенты, тренировки, РП). Запрещено фабриковать отчёты. Участие в чужих мероприятиях — 50%.</li>
+                <li>Раз в две недели: <strong>18 скринов</strong> отчётности (события + активность).</li>
+                <li>Участие в межфракционном событии раз в месяц или фракционное событие для 8+ человек.</li>
+                <li>Три события для всей фракции за две недели. Запрещено фабриковать отчёты.</li>
             </ul>
-
-            <h3>⚔️ Столпы и демоны 12 лун</h3>
+        </div>
+        <div class="rule-card" style="border-left-color: #6fcf97;">
+            <h3>🎭 Главные герои и вторые профессии</h3>
+            <p>📸 Отчётность: 18 скринов за две недели, отправка в Discord-канал. <br>
+            🔄 <strong>Вторая профессия (только Луны/Столпы):</strong> истребители могут вступать в дыхания (кроме донатных), демоны — любой отряд/профа не выше низшей магии крови. <br>
+            ✔️ Вторая профа только после отыгровки основной квоты. При выговоре переключение запрещено.</p>
+        </div>
+        <div class="rule-card" style="border-left-color: #6fcf97;">
+            <h3>🧾 Правила отчётности (пункты 3–3.13)</h3>
             <ul class="rule-list">
-                <li>Основные задачи: порядок, активности, работа с составом, помощь игрокам, задачи от РП состава и лидера.</li>
-                <li>Раз в две недели: участие в межфракционном/глобальном РП событии раз в месяц или фракционное событие для 8+ человек; три события для всей фракции.</li>
-                <li>Квота отчётности: 18 скринов за две недели (события + активность отдельно). Отправка отчётов по истечении двух недель.</li>
-                <li>Запрещено фабриковать отчётность. Чужие мероприятия — 50%.</li>
+                <li>Максимум 2 скрина с одной ситуации, КД между скринами ≥3 минут.</li>
+                <li>На каждом скрине: полный HUD, видимое время, ваш персонаж.</li>
+                <li>Максимум 2 скрина на активность в Discord, 3 на мероприятия, 2 на захваты.</li>
+                <li>Мероприятие/тренировка: 0.5 за троих участников, 1 за двоих.</li>
+                <li>При подделке отчётность аннулируется.</li>
             </ul>
-
-            <h3>🎭 Главные герои</h3>
-            <ul class="rule-list"><li>Задачи: создания активностей и РП. Раз в две недели: 18 скринов отчётности. Те же правила по допустимой деятельности и запрету фабрикации.</li></ul>
-
-            <h3>🔄 Вторые профессии (только для лун/столпов)</h3>
-            <ul class="rule-list">
-                <li>Истребители: столпы могут вступать в любое открытое дыхание или закрытое с полноценным вступлением (искл. донатные). Одобрение — высшая администрация.</li>
-                <li>Демоны: луны — любой отряд или профа не выше демона низшей магии крови (искл. донатные отряды).</li>
-                <li>Важно: вторая профессия только после отыгровки основной квоты. Отпуск = полное отсутствие. При выговоре — нельзя переключаться на вторую профу.</li>
-            </ul>
-
-            <h3>🧭 Правила поведения (2–2.6)</h3>
-            <ul class="rule-list">
-                <li>Запрещено злоупотребление полномочиями, «душка»/«слив» игроков.</li>
-                <li>Конфликты между лорниками — через РП состав. Запрещено NonRP.</li>
-                <li>Макс. выговоры во фракции → выговор на лорного персонажа.</li>
-                <li>Обязателен уважительный тон общения. Все решения РП состава и лидера фракции обязательны к исполнению.</li>
-            </ul>
-
-            <h3>📸 Правила отчетности наборных лорных персонажей (3–3.13)</h3>
-            <ul class="rule-list">
-                <li>Отчётность строго по концепту, в установленное время. Запрещено фабриковать, использовать обработанные скрины.</li>
-                <li>С одной ситуации максимум 2 скрина. КД между скринами — 3+ минут.</li>
-                <li>На каждом скрине обязателен полный HUD, видно время, присутствие Вашего персонажа.</li>
-                <li>Максимум скринов: на активность в Discord — 2, на мероприятия — 3, на захваты — 2.</li>
-                <li>Ивенты/события отряда/дыхания требуют предварительного оповещения в Discord.</li>
-                <li>Мероприятие/тренировка учитывается как 0.5 за троих участников и как 1 за двоих участников.</li>
-            </ul>
-
+        </div>
+        <div class="rule-card" style="border-left-color: #6fcf97;">
             <h3>💤 AFK на лорных персонажах</h3>
-            <ul class="rule-list"><li>Макс. общее время в AFK — 15 минут. Перед AFK — оповестить в ООС чат. Запрещено уходить в AFK на видных местах.</li></ul>
-        </section>
-
-        <!-- КРАСНЫЙ РАЗДЕЛ: ВЗЫСКАНИЯ -->
-        <section id="penalties">
-            <h2>🔴 3. Взыскания для лорных персонажей</h2>
-            <div class="rule-card">
-                <h3>📛 Регламент взысканий</h3>
-                <ul class="rule-list">
-                    <li><strong>Выговор</strong> — за нарушение правил проекта, регламентов лорников или невыполнение квот. Обычные и перманентные выговоры (серьёзные нарушения или рецидив). Отработка через 2 месяца при хорошем поведении.</li>
-                    <li>Санкции за обычный выговор: запрет второй профессии после квоты; норма онлайна — 2 часа.</li>
-                    <li><strong>Предупреждения</strong> — за незначительные нарушения. Слетают через неделю, санкций нет.</li>
-                </ul>
-            </div>
-            <div class="rule-card">
-                <h3>⏳ Отработка взысканий</h3>
-                <ul class="rule-list">
-                    <li>Отработка выговора — задание от РП состава, возможно через 3 дня после получения.</li>
-                    <li>Перманентные выговоры — отработка через 3 месяца при одобрении РП-куратора.</li>
-                    <li>Срок на отработку выговора — неделя, иначе он становится перманентным.</li>
-                    <li>Активный отпуск: +1 день к времени на отработку. Абуз отпуска → перм выговор, отработка через 4 месяца.</li>
-                </ul>
-            </div>
-            <div class="rule-card">
-                <h3>🚫 Регламент ЧС лорников</h3>
-                <ul class="rule-list">
-                    <li>Снятие после испытательного срока: сразу после срока — ЧС 1 месяц; через время без выговоров — ЧС 5 дней.</li>
-                    <li>Снятие с выговорами: 1 выговор = ЧС 3 мес.; 2 = 6 мес.; 3 = перм ЧС.</li>
-                    <li>Снятие без двухнедельного отчёта: на испытательном = перм ЧС; с 1 выговором = от 3 мес.; с 2 = от 6 мес.</li>
-                </ul>
-            </div>
-            <div class="rule-card">
-                <h3>🏖️ Отпуска</h3>
-                <ul class="rule-list">
-                    <li>Макс. отпуск 1 неделя; КД на отпуск — 3 недели (искл. семейные обстоятельства).</li>
-                    <li>Норма онлайна только в прайм-тайм. Отпуск = полное отсутствие на сервере. Заход на любой из двух серверов → аннулирование отпуска.</li>
-                    <li>Отпуск «отдых», но играете на первом для квоты — отпуск аннулируется + наказание за квоту.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- СИНИЙ РАЗДЕЛ: ИНФОРМАЦИЯ -->
-        <section id="info">
-            <h2>🔵 4. Информация для лорных персонажей</h2>
-            <div class="rule-card">
-                <ul class="rule-list">
-                    <li>Вопросы по лорникам — через РП-персонал.</li>
-                    <li>Отчётность ежедневно в ветки Discord. Следить за объявлениями в официальном Discord проекта.</li>
-                </ul>
-            </div>
-            <h3>📖 Временные рамки и лор-сеттинг</h3>
-            <div class="info-note">
-                Действие — промежуток перед/после горы Натагума. Учитывать при отыгрыше возможностей персонажей. Главные герои не в пиковой силе, особенно на испытательном сроке. По мере получения статуса «киноэ» положение может меняться. Не ссылаться на арки манги — у нас не та арка. Учитывать механику сервера (например, Танджиро с «танцем бога огня», Незуко с магией крови и берсерком).
-            </div>
-            <h3>👥 Отвечающие за лорников</h3>
-            <ul class="rule-list">
-                <li>РП Куратор</li>
-                <li>Деп. РП Куратор (демоны)</li>
-                <li>Деп. РП Куратор (истребители)</li>
-            </ul>
-        </section>
-
-        <!-- БИРЮЗОВЫЙ: сроки и периоды (доп. сводка) -->
-        <section id="timings">
-            <h2>⏱️ Бирюзовый — сроки и периоды</h2>
-            <div class="rule-card">
-                <ul class="rule-list">
-                    <li><strong>Испытательный срок:</strong> 2 недели. Отпуск продлевает 1:1.</li>
-                    <li><strong>Квота лорников:</strong> учитывается с 16:00 до 00:00 МСК.</li>
-                    <li><strong>Prime-Time для Столпов, Лун, ГГ:</strong> ежедневно 16:00–00:00, 90 мин активности.</li>
-                    <li><strong>Отчётность:</strong> каждые две недели — 18 скринов для Столпов/Лун/ГГ.</li>
-                    <li><strong>Максимальный отпуск:</strong> 1 неделя; КД 3 недели.</li>
-                    <li><strong>Срок отработки выговора:</strong> 1 неделя, иначе перманентный.</li>
-                    <li><strong>ЧС:</strong> от 5 дней до перманента в зависимости от тяжести и выговоров.</li>
-                </ul>
-            </div>
-        </section>
-
-        <hr>
-        <div class="info-note" style="text-align: center;">
-            ⚡ Лорные персонажи обязаны соблюдать регламент, квоты, отчётность и указания РП состава. Нарушения влекут предупреждения, выговоры и снятия.
+            <p>Максимум AFK — 15 минут, с обязательным оповещением в OOC. Запрещено AFK на видных местах.</p>
         </div>
     </div>
 
-    <footer>
-        © Регламент лорников | Yufu.Su / Клинок, рассекающий демонов<br>
-        Актуальная версия регламента — всегда на официальном портале. Следите за обновлениями в Discord проекта.
-    </footer>
+    <!-- Вкладка 3: Санкции / Взыскания (красный) -->
+    <div id="tab3" class="tab-content">
+        <div class="rule-card" style="border-left-color: #e74c3c;">
+            <h3>⚠️ Выговоры и предупреждения</h3>
+            <ul class="rule-list">
+                <li><strong>Выговор</strong> — за нарушение правил / невыполнение квот. Санкции: запрет второй профессии, норма онлайна 2 часа.</li>
+                <li><strong>Перманентный выговор</strong> — за рецидив или серьёзные нарушения. Отработка через 2 месяца при хорошем поведении.</li>
+                <li><strong>Предупреждения</strong> — за незначительные нарушения, слетают через неделю.</li>
+            </ul>
+        </div>
+        <div class="rule-card" style="border-left-color: #e74c3c;">
+            <h3>⏳ Отработка взысканий</h3>
+            <ul class="rule-list">
+                <li>Отработка выговора — задание от РП состава (через 3 дня после получения). Срок 1 неделя, иначе выговор становится перманентным.</li>
+                <li>Перманентный выговор снимается через 3 месяца с одобрения РП-куратора.</li>
+                <li>Активный отпуск продлевает срок отработки (1 день отпуска = +1 день). Абуз отпуска → перм выговор + отработка через 4 месяца.</li>
+            </ul>
+        </div>
+        <div class="rule-card" style="border-left-color: #e74c3c;">
+            <h3>🚫 Регламент ЧС лорников (снятие)</h3>
+            <ul class="rule-list">
+                <li><strong>Снятие после испытательного срока:</strong> сразу → ЧС 1 месяц; без выговоров → ЧС 5 дней.</li>
+                <li><strong>Снятие с выговорами:</strong> 1 выговор = ЧС 3 мес; 2 выговора = ЧС 6 мес; 3 выговора = перм ЧС.</li>
+                <li><strong>Снятие без двухнедельного отчёта:</strong> на испытательном = перм ЧС; с выговорами от 3-6 мес.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Вкладка 4: Информация (синий) -->
+    <div id="tab4" class="tab-content">
+        <div class="rule-card" style="border-left-color: #5dade2;">
+            <h3>🗂️ Общая информация</h3>
+            <ul class="rule-list">
+                <li>Вопросы по лорникам — через РП-персонал.</li>
+                <li>Отчётность ежедневно в ветках Discord. Следить за объявлениями проекта.</li>
+                <li><strong>Временные рамки:</strong> действия до/после горы Натагума. Главные герои не в пиковой силе (кроме статуса «киноэ»).</li>
+                <li>Учитывать механику сервера: Танджиро — танец бога огня, Незуко — магия крови и берсерк.</li>
+            </ul>
+        </div>
+        <div class="rule-card" style="border-left-color: #5dade2;">
+            <h3>🧑‍⚖️ Отвечающие за лорников</h3>
+            <ul class="rule-list">
+                <li>🎓 РП Куратор</li>
+                <li>👹 Деп. РП Куратор (демоны)</li>
+                <li>⚔️ Деп. РП Куратор (истребители)</li>
+            </ul>
+            <p>Запрещено видоизменять дискорд-сервер без оповещения администрации. Право на запрос скриншотов и пояснений.</p>
+        </div>
+        <div class="info-note">
+            📢 <strong>Приоритет регламента:</strong> если внутренний устав фракции противоречит положениям свода, действует данный регламент. РП состав имеет право вмешиваться в дела фракций.
+        </div>
+    </div>
+
+    <!-- Вкладка 5: Сроки и периоды + отпуска (бирюзовый) -->
+    <div id="tab5" class="tab-content">
+        <div class="rule-card" style="border-left-color: #48c9b0;">
+            <h3>🗓️ Отпуска и временные рамки</h3>
+            <ul class="rule-list">
+                <li>📆 Максимальный отпуск — <strong>1 неделя</strong>. КД между отпусками — 3 недели (кроме семейных обстоятельств).</li>
+                <li>Отпуск = полное отсутствие на сервере. Заход на любой сервер → аннулирование отпуска + наказание за квоту.</li>
+                <li>Отпуск «отдых» / «болею» НЕ допускается, если вы заходите играть на другом персонаже.</li>
+                <li>Заявку на отпуск необходимо скидывать в ветку лорного персонажа до 18:30, после отклоняется.</li>
+                <li><strong>Испытательный срок</strong> продлевается пропорционально дням отпуска.</li>
+                <li>Норма онлайна только в прайм-тайм (16:00 – 00:00).</li>
+            </ul>
+        </div>
+        <div class="rule-card" style="border-left-color: #48c9b0;">
+            <h3>⏲️ Действие лора и квотные периоды</h3>
+            <ul class="rule-list">
+                <li>Отчётность за две недели — отправка в спецканал Discord.</li>
+                <li>Квота на скрины: 18 за две недели для Столпов/Лун/ГГ.</li>
+                <li>Мероприятия для фракции: обязательная подача оповещения в Discord заранее.</li>
+                <li>При невыполнении квоты или подлоге — аннулирование отчётности и санкции.</li>
+            </ul>
+            <p>🔁 <strong>Пересдача отчётов</strong> не предусмотрена. В случае спорных моментов окончательное решение за РП составом.</p>
+        </div>
+        <div class="rule-card" style="border-left-color: #48c9b0;">
+            <h3>🔄 Восстановление и вторые слоты</h3>
+            <p>Если вы использовали второй слот во фракции (демоны/истребители) — восстановить лорника в противоположной нельзя. Исключение: тестовый период без нарушений, по решению РП-куратора.</p>
+        </div>
+    </div>
+
+    <div class="footer-ref">
+        📌 Официальный регламент лорников | Система /roll: <a href="https://whiteprinc3.github.io/rollsystem/" target="_blank">Клинок, рассекающий демонов – броски</a><br>
+        🧩 lorecharacter / Yufu.Su — актуальная версия. Нарушения фиксируются, квота обязательна.
+    </div>
 </div>
+
+<script>
+    // логика переключения вкладок
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+
+    function switchTab(tabId) {
+        contents.forEach(content => {
+            content.classList.remove('active');
+        });
+        const activeContent = document.getElementById(tabId);
+        if (activeContent) activeContent.classList.add('active');
+
+        tabs.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-tab') === tabId) {
+                btn.classList.add('active');
+            }
+        });
+    }
+
+    tabs.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const tabId = btn.getAttribute('data-tab');
+            if (tabId) switchTab(tabId);
+        });
+    });
+</script>
 </body>
 </html>
+```
