@@ -3,96 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Регламент лорников | Yufu.Su</title>
+    <title>Регламент лорников | Yufu.Su — светлая/тёмная тема</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        body {
-            background: #f6eedf;  /* основной бежевый фон */
-            font-family: 'Segoe UI', 'Roboto', 'Noto Sans', system-ui, -apple-system, sans-serif;
-            padding: 2rem 1.5rem;
+        /* ========== СВЕТЛАЯ ТЕМА (бежевая, по умолчанию) ========== */
+        body.light {
+            background: #f6eedf;
             color: #3e2e24;
         }
 
-        /* главный контейнер — тёплый, бежевый */
+        body.light .container {
+            background: #fdf8f0;
+            border: 1px solid #e7dac8;
+            box-shadow: 0 20px 35px -12px rgba(80, 50, 25, 0.2);
+        }
+
+        body.light .site-header {
+            border-bottom-color: #dbbf8c;
+        }
+
+        body.light .site-header h1 {
+            color: #6b4c3b;
+            text-shadow: 0 1px 0 #f2e5d4;
+        }
+
+        body.light .sub {
+            color: #8b6b51;
+        }
+
+        body.light .tabs {
+            border-bottom-color: #e2d2bc;
+        }
+
+        body.light .tab-btn {
+            background: #f5ede2;
+            border: 1px solid #e0cfb7;
+            color: #5a3f2e;
+        }
+
+        body.light .tab-btn:hover {
+            background: #ecdbba;
+            border-color: #c8aa7a;
+        }
+
+        body.light .tab-btn.active {
+            background: #e7d5bd;
+            color: #3c2a1f;
+            border-bottom: 2px solid #ca9f6e;
+        }
+
+        body.light .rule-card {
+            background: #fffaf3;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        body.light .rule-card h3 {
+            color: #7b543c;
+            border-bottom-color: #e2c7a4;
+        }
+
+        body.light .rule-card p, body.light .rule-card li {
+            color: #4f3a2c;
+        }
+
+        body.light .badge {
+            background: #e9ddcf;
+            color: #7b563b;
+        }
+
+        body.light .info-note {
+            background: #fcf4e8;
+            border: 1px solid #eedbba;
+        }
+
+        body.light .footer-ref {
+            color: #9c7e64;
+            border-top-color: #e7d5be;
+        }
+
+        body.light a {
+            color: #a57042;
+            border-bottom-color: #cfb28b;
+        }
+
+        body.light a:hover {
+            color: #7e532e;
+        }
+
+        /* ========== ТЁМНАЯ ТЕМА (синие тона) ========== */
+        body.dark {
+            background: #0a1428;
+            color: #d3e2fd;
+        }
+
+        body.dark .container {
+            background: #0f1a2f;
+            border: 1px solid #2a3f66;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        body.dark .site-header {
+            border-bottom-color: #3a5a8c;
+        }
+
+        body.dark .site-header h1 {
+            color: #bdd4ff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        body.dark .sub {
+            color: #8da3ce;
+        }
+
+        body.dark .tabs {
+            border-bottom-color: #253a5a;
+        }
+
+        body.dark .tab-btn {
+            background: #111d33;
+            border: 1px solid #2a3f60;
+            color: #c9ddff;
+        }
+
+        body.dark .tab-btn:hover {
+            background: #1e3050;
+            border-color: #4a72a8;
+        }
+
+        body.dark .tab-btn.active {
+            background: #1f3a60;
+            color: #eaf3ff;
+            border-bottom: 2px solid #5d8fd1;
+        }
+
+        /* цветные полоски вкладок для тёмной темы (чуть ярче) */
+        body.dark .tab-btn[data-tab="tab1"] { border-left-color: #f0b27a; }
+        body.dark .tab-btn[data-tab="tab2"] { border-left-color: #7dcea0; }
+        body.dark .tab-btn[data-tab="tab3"] { border-left-color: #e59866; }
+        body.dark .tab-btn[data-tab="tab4"] { border-left-color: #6ba5ff; }
+        body.dark .tab-btn[data-tab="tab5"] { border-left-color: #58d3c5; }
+
+        body.dark .rule-card {
+            background: #0e1a2e;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark .rule-card h3 {
+            color: #bbd4ff;
+            border-bottom-color: #2f4d7a;
+        }
+
+        body.dark .rule-card p, body.dark .rule-card li {
+            color: #cbddf5;
+        }
+
+        body.dark .badge {
+            background: #1f314f;
+            color: #bbd0f0;
+        }
+
+        body.dark .info-note {
+            background: #0f1c34;
+            border: 1px solid #2c4a77;
+        }
+
+        body.dark .footer-ref {
+            color: #7892c2;
+            border-top-color: #233a5a;
+        }
+
+        body.dark a {
+            color: #8bb5ff;
+            border-bottom-color: #3a6090;
+        }
+
+        body.dark a:hover {
+            color: #bed6ff;
+        }
+
+        /* общие стили (не зависят от темы) */
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Noto Sans', system-ui, -apple-system, sans-serif;
+            padding: 2rem 1.5rem;
+        }
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            background: #fdf8f0;
             border-radius: 2rem;
-            box-shadow: 0 20px 35px -12px rgba(80, 50, 25, 0.2);
             padding: 2rem 2rem 2.5rem 2rem;
-            border: 1px solid #e7dac8;
         }
 
-        /* заголовок */
         .site-header {
             text-align: center;
             margin-bottom: 2rem;
-            border-bottom: 2px solid #dbbf8c;
             padding-bottom: 1rem;
+            position: relative;
         }
 
         .site-header h1 {
             font-size: 2.6rem;
-            color: #6b4c3b;
             letter-spacing: -0.5px;
-            text-shadow: 0 1px 0 #f2e5d4;
         }
 
         .sub {
-            color: #8b6b51;
             margin-top: 0.4rem;
             font-style: italic;
         }
 
-        /* панель вкладок (бежево-песочная) */
+        /* кнопка переключения темы */
+        .theme-switch {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: rgba(0,0,0,0.1);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 60px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            transition: 0.2s;
+        }
+
+        body.light .theme-switch {
+            background: #e7d5bd;
+            color: #5a3f2e;
+        }
+
+        body.dark .theme-switch {
+            background: #1f3460;
+            color: #ffdd99;
+        }
+
+        .theme-switch:hover {
+            transform: scale(1.05);
+        }
+
         .tabs {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 0.75rem;
             margin-bottom: 2rem;
-            border-bottom: 1px solid #e2d2bc;
             padding-bottom: 0.8rem;
         }
 
         .tab-btn {
-            background: #f5ede2;
-            border: 1px solid #e0cfb7;
             padding: 0.7rem 1.8rem;
             font-size: 1rem;
             font-weight: 600;
             border-radius: 60px;
             cursor: pointer;
-            transition: 0.2s;
-            color: #5a3f2e;
             backdrop-filter: blur(2px);
+            border-left-width: 5px !important;
+            border-left-style: solid;
         }
 
-        .tab-btn:hover {
-            background: #ecdbba;
-            transform: translateY(-2px);
-            border-color: #c8aa7a;
-        }
-
-        /* цветные полоски вкладок (сохраняем смысл) */
-        .tab-btn[data-tab="tab1"] { border-left: 5px solid #e0a158; }   /* песочный/жёлтый */
-        .tab-btn[data-tab="tab2"] { border-left: 5px solid #8faa6b; }   /* зелёный */
-        .tab-btn[data-tab="tab3"] { border-left: 5px solid #c96f5e; }   /* красноватый */
-        .tab-btn[data-tab="tab4"] { border-left: 5px solid #7d9bc3; }   /* синий */
-        .tab-btn[data-tab="tab5"] { border-left: 5px solid #68b8a8; }   /* бирюзовый */
-
-        .tab-btn.active {
-            background: #e7d5bd;
-            color: #3c2a1f;
-            border-bottom: 2px solid #ca9f6e;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        }
+        /* цветные полоски для светлой темы */
+        body.light .tab-btn[data-tab="tab1"] { border-left-color: #e0a158; }
+        body.light .tab-btn[data-tab="tab2"] { border-left-color: #8faa6b; }
+        body.light .tab-btn[data-tab="tab3"] { border-left-color: #c96f5e; }
+        body.light .tab-btn[data-tab="tab4"] { border-left-color: #7d9bc3; }
+        body.light .tab-btn[data-tab="tab5"] { border-left-color: #68b8a8; }
 
         .tab-content {
             display: none;
@@ -108,29 +291,20 @@
             to { opacity: 1; transform: translateY(0);}
         }
 
-        /* карточки в бежевой гамме */
         .rule-card {
-            background: #fffaf3;
             border-radius: 1.2rem;
             padding: 1.4rem 1.8rem;
             margin-bottom: 1.5rem;
             border-left: 6px solid;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.05);
-            transition: 0.1s linear;
         }
 
         .rule-card h3 {
             font-size: 1.6rem;
             margin-bottom: 0.75rem;
             font-weight: 600;
-            color: #7b543c;
             display: inline-block;
-            border-bottom: 2px dotted #e2c7a4;
-        }
-
-        .rule-card p, .rule-card li {
-            color: #4f3a2c;
-            line-height: 1.5;
+            border-bottom-width: 2px;
+            border-bottom-style: dotted;
         }
 
         .rule-list {
@@ -143,46 +317,33 @@
         }
 
         .badge {
-            background: #e9ddcf;
             padding: 0.2rem 0.7rem;
             border-radius: 30px;
             font-size: 0.75rem;
             font-weight: bold;
-            color: #7b563b;
             display: inline-block;
             margin-right: 0.5rem;
         }
 
-        hr {
-            border-color: #e5d5be;
-            margin: 1rem 0;
-        }
-
         .info-note {
-            background: #fcf4e8;
             border-radius: 1rem;
             padding: 1rem 1.5rem;
             margin-top: 1rem;
-            border: 1px solid #eedbba;
         }
 
         .footer-ref {
             margin-top: 2rem;
             text-align: center;
             font-size: 0.85rem;
-            color: #9c7e64;
-            border-top: 1px solid #e7d5be;
+            border-top-width: 1px;
+            border-top-style: solid;
             padding-top: 1.2rem;
         }
 
         a {
-            color: #a57042;
             text-decoration: none;
-            border-bottom: 1px dotted #cfb28b;
-        }
-
-        a:hover {
-            color: #7e532e;
+            border-bottom-width: 1px;
+            border-bottom-style: dotted;
         }
 
         @media (max-width: 700px) {
@@ -190,12 +351,14 @@
             .container { padding: 1.2rem; }
             .tab-btn { padding: 0.5rem 1rem; font-size: 0.85rem; }
             .rule-card h3 { font-size: 1.3rem; }
+            .theme-switch { width: 36px; height: 36px; font-size: 1.2rem; top: -8px; right: -8px; }
         }
     </style>
 </head>
-<body>
+<body class="light">
 <div class="container">
     <div class="site-header">
+        <button class="theme-switch" id="themeToggle" aria-label="Сменить тему">🌙</button>
         <h1>📜 Регламент лорников</h1>
         <div class="sub">lorecharacter / Yufu.Su • Лорные персонажи</div>
     </div>
@@ -210,7 +373,7 @@
 
     <!-- Вкладка 1: Регламент -->
     <div id="tab1" class="tab-content active">
-        <div class="rule-card" style="border-left-color: #e0a158;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>📌 Испытательный срок</h3>
             <ul class="rule-list">
                 <li>🔸 Испытательный срок длится <strong>две недели</strong> с момента прохождения на лорного персонажа.</li>
@@ -218,13 +381,13 @@
                 <li>🔸 Отпуск продлевает испытательный срок: 1 день отпуска = +1 день к испытательному сроку.</li>
             </ul>
         </div>
-        <div class="rule-card" style="border-left-color: #e0a158;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>🎲 Команда /roll и статус no-roll</h3>
             <p>Полный регламент бросков для Хашир, Лун, лидеров и ГГ — на отдельной странице:<br>
             📎 <a href="https://whiteprinc3.github.io/rollsystem/" target="_blank">Система /roll — Клинок, рассекающий демонов</a><br>
             Диапазон 0–100, бонусы за ранг, no-roll для Столпов и Лун. <strong>Две неудачи подряд</strong> → обязательная пауза 3 минуты перед новым /roll.</p>
         </div>
-        <div class="rule-card" style="border-left-color: #e0a158;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>⚖️ Правила статуса и ERP логика</h3>
             <ul class="rule-list">
                 <li>Статус ≠ вседозволенность. Действия должны быть логичны и каноничны.</li>
@@ -234,7 +397,7 @@
                 <li>Запрещено злоупотреблять /roll; не использовать как способ избежать отыгровки.</li>
             </ul>
         </div>
-        <div class="rule-card" style="border-left-color: #e0a158;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>📖 Общие положения (1.1 – 1.27)</h3>
             <div style="max-height: 400px; overflow-y: auto; padding-right: 8px;">
                 <ul class="rule-list">
@@ -254,7 +417,7 @@
 
     <!-- Вкладка 2: Обязанности -->
     <div id="tab2" class="tab-content">
-        <div class="rule-card" style="border-left-color: #8faa6b;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>🌟 Prime-Time для Столпов, Лун и Главных героев</h3>
             <ul class="rule-list">
                 <li><strong>Ежедневно 16:00 – 00:00</strong> — 90 минут активного времени.</li>
@@ -262,11 +425,11 @@
                 <li>Ежедневный скриншот в ветку онлайна + отчётность по критериям.</li>
             </ul>
         </div>
-        <div class="rule-card" style="border-left-color: #8faa6b;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>👑 Лидеры фракций</h3>
             <p>Контроль порядка, активности, помощь игрокам, отчёт куратору в конце месяца. Квота — допустимая деятельность (ивенты, тренировки). Участие в чужих мероприятиях — не более 50%.</p>
         </div>
-        <div class="rule-card" style="border-left-color: #8faa6b;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>🌙 Столпы / Демоны 12 лун</h3>
             <ul class="rule-list">
                 <li>Раз в две недели: <strong>18 скринов</strong> отчётности (события + активность).</li>
@@ -274,13 +437,13 @@
                 <li>Три события для всей фракции за две недели. Запрещено фабриковать отчёты.</li>
             </ul>
         </div>
-        <div class="rule-card" style="border-left-color: #8faa6b;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>🎭 Главные герои и вторые профессии</h3>
             <p>📸 Отчётность: 18 скринов за две недели, отправка в Discord-канал. <br>
             🔄 <strong>Вторая профессия (только Луны/Столпы):</strong> истребители могут вступать в дыхания (кроме донатных), демоны — любой отряд/профа не выше низшей магии крови. <br>
             ✔️ Вторая профа только после отыгровки основной квоты. При выговоре переключение запрещено.</p>
         </div>
-        <div class="rule-card" style="border-left-color: #8faa6b;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>🧾 Правила отчётности (пункты 3–3.13)</h3>
             <ul class="rule-list">
                 <li>Максимум 2 скрина с одной ситуации, КД между скринами ≥3 минут.</li>
@@ -290,7 +453,7 @@
                 <li>При подделке отчётность аннулируется.</li>
             </ul>
         </div>
-        <div class="rule-card" style="border-left-color: #8faa6b;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>💤 AFK на лорных персонажах</h3>
             <p>Максимум AFK — 15 минут, с обязательным оповещением в OOC. Запрещено AFK на видных местах.</p>
         </div>
@@ -298,7 +461,7 @@
 
     <!-- Вкладка 3: Санкции -->
     <div id="tab3" class="tab-content">
-        <div class="rule-card" style="border-left-color: #c96f5e;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>⚠️ Выговоры и предупреждения</h3>
             <ul class="rule-list">
                 <li><strong>Выговор</strong> — за нарушение правил / невыполнение квот. Санкции: запрет второй профессии, норма онлайна 2 часа.</li>
@@ -306,7 +469,7 @@
                 <li><strong>Предупреждения</strong> — за незначительные нарушения, слетают через неделю.</li>
             </ul>
         </div>
-        <div class="rule-card" style="border-left-color: #c96f5e;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>⏳ Отработка взысканий</h3>
             <ul class="rule-list">
                 <li>Отработка выговора — задание от РП состава (через 3 дня после получения). Срок 1 неделя, иначе выговор становится перманентным.</li>
@@ -314,7 +477,7 @@
                 <li>Активный отпуск продлевает срок отработки (1 день отпуска = +1 день). Абуз отпуска → перм выговор + отработка через 4 месяца.</li>
             </ul>
         </div>
-        <div class="rule-card" style="border-left-color: #c96f5e;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>🚫 Регламент ЧС лорников (снятие)</h3>
             <ul class="rule-list">
                 <li><strong>Снятие после испытательного срока:</strong> сразу → ЧС 1 месяц; без выговоров → ЧС 5 дней.</li>
@@ -326,7 +489,7 @@
 
     <!-- Вкладка 4: Информация -->
     <div id="tab4" class="tab-content">
-        <div class="rule-card" style="border-left-color: #7d9bc3;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>🗂️ Общая информация</h3>
             <ul class="rule-list">
                 <li>Вопросы по лорникам — через РП-персонал.</li>
@@ -335,7 +498,7 @@
                 <li>Учитывать механику сервера: Танджиро — танец бога огня, Незуко — магия крови и берсерк.</li>
             </ul>
         </div>
-        <div class="rule-card" style="border-left-color: #7d9bc3;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>🧑‍⚖️ Отвечающие за лорников</h3>
             <ul class="rule-list">
                 <li>🎓 РП Куратор</li>
@@ -351,7 +514,7 @@
 
     <!-- Вкладка 5: Сроки и периоды + отпуска -->
     <div id="tab5" class="tab-content">
-        <div class="rule-card" style="border-left-color: #68b8a8;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>🗓️ Отпуска и временные рамки</h3>
             <ul class="rule-list">
                 <li>📆 Максимальный отпуск — <strong>1 неделя</strong>. КД между отпусками — 3 недели (кроме семейных обстоятельств).</li>
@@ -362,7 +525,7 @@
                 <li>Норма онлайна только в прайм-тайм (16:00 – 00:00).</li>
             </ul>
         </div>
-        <div class="rule-card" style="border-left-color: #68b8a8;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>⏲️ Квотные периоды и отчётность</h3>
             <ul class="rule-list">
                 <li>Отчётность за две недели — отправка в спецканал Discord.</li>
@@ -372,7 +535,7 @@
             </ul>
             <p>🔁 <strong>Пересдача отчётов</strong> не предусмотрена. В случае спорных моментов окончательное решение за РП составом.</p>
         </div>
-        <div class="rule-card" style="border-left-color: #68b8a8;">
+        <div class="rule-card" style="border-left-color: inherit;">
             <h3>🔄 Восстановление и вторые слоты</h3>
             <p>Если вы использовали второй слот во фракции (демоны/истребители) — восстановить лорника в противоположной нельзя. Исключение: тестовый период без нарушений, по решению РП-куратора.</p>
         </div>
@@ -408,7 +571,39 @@
             if (tabId) switchTab(tabId);
         });
     });
+
+    // тёмная / светлая тема
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            body.classList.remove('light');
+            body.classList.add('dark');
+            themeToggle.textContent = '☀️';
+            localStorage.setItem('loreTheme', 'dark');
+        } else {
+            body.classList.remove('dark');
+            body.classList.add('light');
+            themeToggle.textContent = '🌙';
+            localStorage.setItem('loreTheme', 'light');
+        }
+    }
+
+    const savedTheme = localStorage.getItem('loreTheme');
+    if (savedTheme === 'dark') {
+        setTheme('dark');
+    } else {
+        setTheme('light');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('light')) {
+            setTheme('dark');
+        } else {
+            setTheme('light');
+        }
+    });
 </script>
 </body>
 </html>
-```
