@@ -378,7 +378,7 @@
         <button class="tab-btn" data-tab="tab5">⏳ Сроки / Отпуска</button>
     </div>
 
-    <!-- Вкладка 1: Регламент (полная версия, без сокращений) -->
+    <!-- Вкладка 1: Регламент (ПОЛНАЯ ВЕРСИЯ - сверено с исходником) -->
     <div id="tab1" class="tab-content active">
         <div class="rule-card" data-card="tab1">
             <h3>📌 Испытательный срок</h3>
@@ -416,7 +416,7 @@
             </ul>
         </div>
         <div class="rule-card" data-card="tab1">
-            <h3>📋 Общие положения</h3>
+            <h3>📋 Общие положения (ПОЛНОСТЬЮ, пункты 1.1 - 1.27)</h3>
             <div style="max-height: 500px; overflow-y: auto; padding-right: 8px;">
                 <ul class="rule-list">
                     <li><span class="badge">1.</span> Данный регламент обязателен к исполнению всеми наборными персонажами</li>
@@ -452,7 +452,7 @@
         </div>
     </div>
 
-    <!-- Вкладка 2: Обязанности (полная версия) -->
+    <!-- Вкладка 2: Обязанности (ПОЛНАЯ ВЕРСИЯ) -->
     <div id="tab2" class="tab-content">
         <div class="rule-card" data-card="tab2">
             <h3>🌟 Prime-Time для Столпов, Лун и Главных героев</h3>
@@ -539,7 +539,7 @@
         </div>
     </div>
 
-    <!-- Вкладка 3: Санкции (полная версия) -->
+    <!-- Вкладка 3: Санкции (ПОЛНАЯ ВЕРСИЯ) -->
     <div id="tab3" class="tab-content">
         <div class="rule-card" data-card="tab3">
             <h3>⚠️ Регламент взысканий</h3>
@@ -572,7 +572,7 @@
         </div>
     </div>
 
-    <!-- Вкладка 4: Информация (полная версия) -->
+    <!-- Вкладка 4: Информация (ПОЛНАЯ ВЕРСИЯ) -->
     <div id="tab4" class="tab-content">
         <div class="rule-card" data-card="tab4">
             <h3>🗂️ Общая информация</h3>
@@ -597,7 +597,7 @@
         </div>
     </div>
 
-    <!-- Вкладка 5: Сроки и периоды / Отпуска (полная версия) -->
+    <!-- Вкладка 5: Сроки и периоды / Отпуска (ПОЛНАЯ ВЕРСИЯ) -->
     <div id="tab5" class="tab-content">
         <div class="rule-card" data-card="tab5">
             <h3>🏖️ Отпуска</h3>
@@ -610,12 +610,12 @@
             </ul>
         </div>
         <div class="rule-card" data-card="tab5">
-            <h3>📅 Временные рамки (дополнительно)</h3>
+            <h3>📅 Дополнительные сроки</h3>
             <ul class="rule-list">
-                <li>Действие — промежуток перед/после горы Натагума</li>
                 <li>Квота лорных персонажей учитывается с 16:00 до 00:00 по МСК</li>
                 <li>Испытательный срок длится две недели</li>
-                <li>Отпуск на испытательном сроке продлевает его действие (1:1)</li>
+                <li>Отпуск на испытательном сроке продлевает его действие (1 день отпуска = +1 день к испытательному сроку)</li>
+                <li>Отчётность сдаётся раз в две недели (18 скринов для Столпов/Лун/ГГ)</li>
             </ul>
         </div>
     </div>
@@ -627,7 +627,6 @@
 </div>
 
 <script>
-    // переключение вкладок
     const tabs = document.querySelectorAll('.tab-btn');
     const contents = document.querySelectorAll('.tab-content');
 
@@ -651,7 +650,6 @@
         });
     });
 
-    // тёмная / светлая тема
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
 
